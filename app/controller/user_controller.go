@@ -2,6 +2,7 @@ package controller
 
 import (
 	"gin-gonic-api/app/service"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,6 +12,7 @@ type UserController interface {
 	GetUserById(c *gin.Context)
 	UpdateUserData(c *gin.Context)
 	DeleteUser(c *gin.Context)
+	Helloworld(c *gin.Context)
 }
 
 type UserControllerImpl struct {
@@ -35,6 +37,10 @@ func (u UserControllerImpl) UpdateUserData(c *gin.Context) {
 
 func (u UserControllerImpl) DeleteUser(c *gin.Context) {
 	u.svc.DeleteUser(c)
+}
+
+func (u UserControllerImpl) Helloworld(c *gin.Context) {
+	u.svc.Helloworld(c)
 }
 
 func UserControllerInit(userService service.UserService) *UserControllerImpl {

@@ -3,8 +3,9 @@ package main
 import (
 	"gin-gonic-api/app/router"
 	"gin-gonic-api/config"
-	"github.com/joho/godotenv"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func init() {

@@ -5,11 +5,14 @@ import (
 	"gin-gonic-api/app/domain/dao"
 	"gin-gonic-api/app/pkg"
 	"gin-gonic-api/app/repository"
-	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
-	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
+
+	"golang.org/x/crypto/bcrypt"
+	// swagger embed files
 )
 
 type UserService interface {
@@ -18,6 +21,7 @@ type UserService interface {
 	AddUserData(c *gin.Context)
 	UpdateUserData(c *gin.Context)
 	DeleteUser(c *gin.Context)
+	Helloworld(c *gin.Context)
 }
 
 type UserServiceImpl struct {
@@ -120,6 +124,21 @@ func (u UserServiceImpl) DeleteUser(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, pkg.BuildResponse(constant.Success, pkg.Null()))
+}
+
+// @BasePath /api/v1
+
+// PingExample godoc
+// @Summary ping example
+// @Schemes
+// @Description do ping
+// @Tags example
+// @Accept json
+// @Produce json
+// @Success 200 {string} Helloworld
+// @Router /example/helloworld [get]
+func (u UserServiceImpl) Helloworld(g *gin.Context) {
+	g.JSON(http.StatusOK, "helloworld")
 }
 
 func UserServiceInit(userRepository repository.UserRepository) *UserServiceImpl {
